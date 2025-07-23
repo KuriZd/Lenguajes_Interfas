@@ -1,0 +1,22 @@
+.MODEL SMALL
+.STACK 100h
+.DATA
+    MSG1 DB "tECLEA UN CARACTER: $"
+    CARACTER DB 3 DUP ("$")
+.CODE
+    MOV AX,SEG MSG1
+    MOV DS,AX
+    LEA DX,MSG1
+    MOV AH,09
+    INT 21h
+    MOV AH,0Ah
+    MOV DX, OFFSET CARACTER  
+    MOV CARACTER[0],2
+    INT 21h
+    MOV AL,CARACTER[2]
+    SUB AL,30h
+    MOV [212h],AX
+    
+    MOV AH,4Ch
+    INT 21H
+    
